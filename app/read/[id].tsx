@@ -6,13 +6,15 @@ import {
 import { ThemedText } from '@/components/themed-text';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Audio } from '@/lib/audio';
 import { Ionicons } from '@expo/vector-icons';
-import { Audio } from 'expo-av';
+import { Asset } from 'expo-asset';
 import { Image } from 'expo-image';
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useMemo, useRef, useState } from 'react';
 import {
 	FlatList,
+	Platform,
 	Pressable,
 	StyleSheet,
 	useWindowDimensions,
@@ -42,13 +44,45 @@ export default function ReadBookScreen() {
 	const meta = id ? (bookMeta as any)[id] : undefined;
 	const [index, setIndex] = useState(0);
 	const listRef = useRef<FlatList<number>>(null);
-	const soundRef = useRef<Audio.Sound | null>(null);
+	const soundRef = useRef<any>(null);
 	const autoPlayNextRef = useRef(false);
 	const initialAutoplayDoneRef = useRef(false);
+	const autoplayEnabledRef = useRef(false);
 	const playingIndexRef = useRef<number | null>(null);
 	const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const pendingAutoIndexRef = useRef<number | null>(null);
 	const AUTO_DELAY_MS = 2000;
+
+	// Debug: log audio API shape once
+	React.useEffect(() => {
+		try {
+			console.log('[audio] Audio keys', Object.keys(Audio ?? {}));
+			// @ts-ignore
+			console.log(
+				'[audio] Audio.Sound keys',
+				Object.keys((Audio as any)?.Sound ?? {})
+			);
+			// @ts-ignore
+			console.log(
+				'[audio] has createAsync',
+				typeof (Audio as any)?.Sound?.createAsync
+			);
+		} catch {}
+	}, []);
+
+	// Configure audio so it plays reliably (e.g., iOS silent switch)
+	React.useEffect(() => {
+		(async () => {
+			try {
+				await Audio.setAudioModeAsync?.({
+					playsInSilentModeIOS: true,
+					allowsRecordingIOS: false,
+					staysActiveInBackground: false,
+					shouldDuckAndroid: true,
+				});
+			} catch {}
+		})();
+	}, []);
 
 	// Find the next page index that has audio available starting from `start` (exclusive or inclusive based on caller)
 	const findNextIndexWithAudio = React.useCallback(
@@ -102,51 +136,170 @@ export default function ReadBookScreen() {
 	const goPrev = () => canPrev && scrollToIndex(index - 1);
 	const goNext = () => canNext && scrollToIndex(index + 1);
 
+	// Create sound across varying API shapes (expo-audio versions)
+	const createSoundNormalized = React.useCallback(async (source: any) => {
+		// Preferred path: createAsync
+		// @ts-ignore
+		if (Audio?.Sound?.createAsync) {
+			// @ts-ignore
+			return await Audio.Sound.createAsync(source, { shouldPlay: true });
+		}
+		// Fallback path: construct and load
+		try {
+			// @ts-ignore
+			if (Audio?.Sound) {
+				// @ts-ignore
+				const instance = new (Audio as any).Sound();
+				await instance.loadAsync?.(source, { shouldPlay: true });
+				return { sound: instance } as { sound: any };
+			}
+		} catch (e) {
+			console.warn('[audio] fallback loadAsync failed', e);
+		}
+		throw new Error('No compatible audio API found');
+	}, []);
+
 	const playForIndex = React.useCallback(
 		async (i: number) => {
 			try {
-				const src = allAudio?.[i];
-				if (!src) return;
+				const moduleId = allAudio?.[i];
+				if (!moduleId) return;
+				console.log('[audio] playForIndex', i, { hasSource: !!moduleId });
 				if (soundRef.current) {
 					await soundRef.current.unloadAsync();
 					soundRef.current = null;
 				}
-				const { sound } = await Audio.Sound.createAsync(src, {
-					shouldPlay: true,
-				});
+				let source: any = moduleId;
+				try {
+					const asset = Asset.fromModule(moduleId);
+					await asset.downloadAsync();
+					if (asset.localUri) {
+						source = { uri: asset.localUri } as any;
+					}
+				} catch (e) {
+					console.warn(
+						'[audio] asset resolution failed (continuing with module id)',
+						e
+					);
+				}
+				// Web fallback using HTMLAudioElement when expo-audio isn't available
+				if (Platform.OS === 'web') {
+					const uri =
+						source && typeof source === 'object' && 'uri' in source
+							? (source as any).uri
+							: undefined;
+					if (!uri) {
+						console.warn('[audio] web: missing uri for audio source');
+						return;
+					}
+					const el = new (globalThis as any).Audio(uri);
+					(el as any).preload = 'auto';
+					const webSound = {
+						_el: el,
+						unloadAsync: async () => {
+							try {
+								el.pause();
+								el.currentTime = 0;
+								el.src = '';
+							} catch {}
+						},
+						playAsync: async () => {
+							try {
+								await el.play();
+							} catch (e) {
+								console.warn('[audio] web play failed', e);
+							}
+						},
+						setOnPlaybackStatusUpdate: (cb: (s: any) => void) => {
+							el.onended = () => cb({ didJustFinish: true });
+						},
+					};
+					soundRef.current = webSound;
+					setIsPlaying(true);
+					playingIndexRef.current = i;
+					await webSound.playAsync();
+					webSound.setOnPlaybackStatusUpdate((status: any) => {
+						if (status && status.didJustFinish) {
+							webSound.unloadAsync().catch(() => {});
+							if (soundRef.current === webSound) soundRef.current = null;
+							setIsPlaying(false);
+							// Decide next step based on autoplay setting
+							const finishedIndex = playingIndexRef.current ?? i;
+							playingIndexRef.current = null;
+							if (autoplayEnabledRef.current) {
+								const directNext = finishedIndex + 1;
+								let target = -1;
+								if (directNext < allPages.length) {
+									target = allAudio?.[directNext]
+										? directNext
+										: findNextIndexWithAudio(directNext + 1);
+								}
+								if (target !== -1) {
+									autoPlayNextRef.current = true;
+									pendingAutoIndexRef.current = target;
+									scrollToIndex(target);
+								} else {
+									autoPlayNextRef.current = false;
+									pendingAutoIndexRef.current = null;
+								}
+							}
+						}
+					});
+					return;
+				}
+
+				const { sound } = await createSoundNormalized(source);
 				soundRef.current = sound;
 				setIsPlaying(true);
 				playingIndexRef.current = i;
+				console.log('[audio] sound created');
+				// Some platforms/packages ignore shouldPlay in initial status; ensure playback starts
+				try {
+					await sound.playAsync?.();
+				} catch (e) {
+					console.warn('[audio] playAsync error', e);
+				}
 				sound.setOnPlaybackStatusUpdate((status: any) => {
+					// console.log('[audio] status', status);
 					if (status && status.didJustFinish) {
 						sound.unloadAsync().catch(() => {});
 						if (soundRef.current === sound) soundRef.current = null;
 						setIsPlaying(false);
-						// Auto-advance to next page and schedule playback after delay
+						// Decide next step based on autoplay setting
 						const finishedIndex = playingIndexRef.current ?? i;
 						playingIndexRef.current = null;
-						const directNext = finishedIndex + 1;
-						let target = -1;
-						if (directNext < allPages.length) {
-							target = allAudio?.[directNext]
-								? directNext
-								: findNextIndexWithAudio(directNext + 1);
-						}
-						if (target !== -1) {
-							autoPlayNextRef.current = true;
-							pendingAutoIndexRef.current = target;
-							// Navigate to target page; index effect will schedule delayed play
-							scrollToIndex(target);
-						} else {
-							// No next audio; stop chaining
-							autoPlayNextRef.current = false;
-							pendingAutoIndexRef.current = null;
+						if (autoplayEnabledRef.current) {
+							const directNext = finishedIndex + 1;
+							let target = -1;
+							if (directNext < allPages.length) {
+								target = allAudio?.[directNext]
+									? directNext
+									: findNextIndexWithAudio(directNext + 1);
+							}
+							if (target !== -1) {
+								autoPlayNextRef.current = true;
+								pendingAutoIndexRef.current = target;
+								// Navigate to target page; index effect will schedule delayed play
+								scrollToIndex(target);
+							} else {
+								// No next audio; stop chaining
+								autoPlayNextRef.current = false;
+								pendingAutoIndexRef.current = null;
+							}
 						}
 					}
 				});
-			} catch {}
+			} catch (e) {
+				console.warn('[audio] create/play failed', e);
+			}
 		},
-		[allAudio, allPages.length, scrollToIndex, findNextIndexWithAudio]
+		[
+			allAudio,
+			allPages.length,
+			scrollToIndex,
+			findNextIndexWithAudio,
+			createSoundNormalized,
+		]
 	);
 
 	React.useEffect(() => {
@@ -202,6 +355,7 @@ export default function ReadBookScreen() {
 	React.useEffect(() => {
 		if (autoplay && !initialAutoplayDoneRef.current) {
 			initialAutoplayDoneRef.current = true;
+			autoplayEnabledRef.current = true;
 			if (allAudio?.[index]) {
 				playForIndex(index);
 			}
