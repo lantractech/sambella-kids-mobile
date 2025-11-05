@@ -1,0 +1,109 @@
+{
+	"id": "a-secret-in-the-attic",
+	"title": "A Secret in the Attic",
+	"cover": "/books/a-secret-in-the-attic/cover.jpg",
+	"ageRange": "5-9",
+	"description": "A playful mystery where friends find a dusty trunk and piece together a family story using clues and imagination.",
+	"pages": [
+		{
+			"page": 1,
+			"text": "It all began on a rainy afternoon when Emma and Oliver decided to explore the old attic.",
+			"illustration": "Emma and Oliver climbing a wooden ladder into a dim attic filled with boxes, beams, and soft sunlight filtering through a window."
+		},
+		{
+			"page": 2,
+			"text": "The air smelled like old paper and pine dust. A single beam of light landed on a trunk tucked beneath a blanket.",
+			"illustration": "A dusty attic corner with cobwebs, sunbeam highlighting an old trunk half-covered by a faded quilt."
+		},
+		{
+			"page": 3,
+			"text": "“Look!” said Emma. “It’s locked!” But Oliver noticed a golden key glinting beside a stack of letters.",
+			"illustration": "Close-up of Oliver reaching toward a small golden key near yellowed envelopes and books."
+		},
+		{
+			"page": 4,
+			"text": "With a soft click, the trunk creaked open. Inside were maps, papers, and a leather notebook tied with ribbon.",
+			"illustration": "Children kneeling beside the open trunk, pages and trinkets glowing faintly in warm attic light."
+		},
+		{
+			"page": 5,
+			"text": "Oliver flipped open the notebook. The first page read: 'The Secret of the Starlight Compass.'",
+			"illustration": "The notebook open in Oliver’s hands, glowing letters reading 'The Secret of the Starlight Compass' as Emma leans closer."
+		},
+		{
+			"page": 6,
+			"text": "“A treasure hunt!” Emma gasped. Tiny sketches of constellations dotted the margins of each page.",
+			"illustration": "A close-up of the notebook showing constellations, symbols, and hand-drawn arrows connecting stars."
+		},
+		{
+			"page": 7,
+			"text": "They followed the first clue: 'Where light meets wood and whispers sleep.'",
+			"illustration": "The children puzzling over the clue beside attic beams and an old window where moonlight pours in."
+		},
+		{
+			"page": 8,
+			"text": "Oliver spotted a wooden birdcage hanging near the window. Inside was a rolled note tied with blue thread.",
+			"illustration": "A small birdcage swinging gently by the window with a glowing paper inside."
+		},
+		{
+			"page": 9,
+			"text": "The note read: 'Seek the feather that never fell.' Emma looked at the paintings on the wall and smiled.",
+			"illustration": "Emma pointing to a framed painting of a bird mid-flight, feathers frozen in time."
+		},
+		{
+			"page": 10,
+			"text": "Behind the painting, they found a small compartment with an old magnifying glass and a silver locket.",
+			"illustration": "Oliver holding up a magnifying glass while Emma opens a tiny hidden door revealing the locket."
+		},
+		{
+			"page": 11,
+			"text": "Inside the locket was a photo of a young woman and a man smiling in front of the same attic window.",
+			"illustration": "Close-up of the locket glowing in Emma’s hand, showing an old sepia photograph."
+		},
+		{
+			"page": 12,
+			"text": "On the back of the photo, neat handwriting said: 'Follow the stars to where our story began.'",
+			"illustration": "Emma holding the photo under the attic’s star-shaped window as the night sky glimmers outside."
+		},
+		{
+			"page": 13,
+			"text": "They turned off the attic light. Through the window, tiny stars lined up like arrows across the sky.",
+			"illustration": "Children gazing out the round attic window, the Milky Way reflected in their eyes."
+		},
+		{
+			"page": 14,
+			"text": "The starlight pointed toward a shelf of books. One book had a glowing spine and the same ribbon as the notebook.",
+			"illustration": "A row of old books, one shimmering faintly while dust motes float around it."
+		},
+		{
+			"page": 15,
+			"text": "Inside the book were letters—love notes between the woman and man from the locket. They were explorers!",
+			"illustration": "Emma and Oliver surrounded by floating papers, illustrations of maps and hearts drawn in the margins."
+		},
+		{
+			"page": 16,
+			"text": "One letter said: 'We’ll hide our compass where dreams rest and daylight dances.'",
+			"illustration": "Oliver reading aloud as Emma imagines explorers in the attic, lantern light mixing with stars."
+		},
+		{
+			"page": 17,
+			"text": "They looked around the room until Emma whispered, 'The old toy chest!' They opened it together.",
+			"illustration": "The children kneeling by a wooden toy chest, their faces lit with excitement and soft golden glow."
+		},
+		{
+			"page": 18,
+			"text": "Inside, wrapped in velvet, was a brass compass etched with tiny stars. It shimmered like the night sky.",
+			"illustration": "A glowing compass resting on blue velvet, reflecting light on the children’s amazed faces."
+		},
+		{
+			"page": 19,
+			"text": "Emma smiled. 'It’s not just a treasure—it’s their story. And now it’s ours too.'",
+			"illustration": "Both children smiling warmly as they hold the compass together, surrounded by gentle starlight."
+		},
+		{
+			"page": 20,
+			"text": "They closed the trunk carefully. The stars outside twinkled as if winking goodnight to their secret in the attic.",
+			"illustration": "A peaceful final scene: the attic window glowing with starlight, the children descending the ladder, leaving the trunk safe and closed."
+		}
+	]
+}

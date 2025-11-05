@@ -1,0 +1,109 @@
+{
+	"id": "captain-cupcake",
+	"title": "Captain Cupcake",
+	"cover": "/books/captain-cupcake/cover.jpg",
+	"ageRange": "3-5",
+	"description": "A spritely adventure where a bakery mascot learns leadership while saving the neighborhood bake sale.",
+	"pages": [
+		{
+			"page": 1,
+			"text": "Every morning, Sweet Street Bakery woke up with the smell of sugar and cinnamon. On the top shelf sat Captain Cupcake—frosted, fearless, and full of fun!",
+			"illustration": "A bright, cozy bakery with sunlight streaming in, pastries smiling, and a cupcake with a tiny captain’s hat on a high shelf."
+		},
+		{
+			"page": 2,
+			"text": "He wasn’t just any cupcake. He was the leader of the treats!",
+			"illustration": "Captain Cupcake standing proudly while cookies, muffins, and donuts look up to him."
+		},
+		{
+			"page": 3,
+			"text": "Every day, he led the Pastry Parade. The croissants marched. The donuts twirled. The muffins bounced in time!",
+			"illustration": "Happy pastries dancing through the bakery in a colorful parade behind Captain Cupcake."
+		},
+		{
+			"page": 4,
+			"text": "But one morning, something was wrong. The big bake sale banner had fallen down!",
+			"illustration": "A banner that says 'Bake Sale Today!' lies crumpled on the floor. The pastries look worried."
+		},
+		{
+			"page": 5,
+			"text": "“Oh no!” cried Muffin Millie. “How will anyone know to come?”",
+			"illustration": "Muffin Millie frowning, holding the edge of the banner while crumbs scatter around."
+		},
+		{
+			"page": 6,
+			"text": "Captain Cupcake stood tall. “Don’t worry, team! We can fix this—together!”",
+			"illustration": "Captain Cupcake saluting proudly as the other pastries perk up with smiles."
+		},
+		{
+			"page": 7,
+			"text": "They got to work. They cleaned, they glued, they sprinkled, and they sang.",
+			"illustration": "The pastries happily fixing the banner using frosting and candy stars like decorations."
+		},
+		{
+			"page": 8,
+			"text": "Then—whoosh! A big wind blew through the window. Sprinkles flew everywhere!",
+			"illustration": "Pastries holding onto trays while sprinkles and ribbons swirl through the air."
+		},
+		{
+			"page": 9,
+			"text": "“Hold on!” shouted Captain Cupcake. “We can do it! Form a pastry chain!”",
+			"illustration": "Cupcake leading a chain of pastries linking arms to grab the banner."
+		},
+		{
+			"page": 10,
+			"text": "Cookie Carl held tight. Donut Dot grabbed next. Muffin Millie pulled with all her might!",
+			"illustration": "Each pastry helping, straining but smiling as they work together."
+		},
+		{
+			"page": 11,
+			"text": "Together, they lifted the banner up—just in time!",
+			"illustration": "The pastries cheering as the banner hangs proudly again."
+		},
+		{
+			"page": 12,
+			"text": "Ding! The bakery doorbell rang. Customers came smiling inside.",
+			"illustration": "Families entering the bakery, eyes wide at the treats."
+		},
+		{
+			"page": 13,
+			"text": "Captain Cupcake waved. “Welcome, friends! We’re ready for the bake sale!”",
+			"illustration": "Captain Cupcake behind the counter, greeting happy children and parents."
+		},
+		{
+			"page": 14,
+			"text": "Cakes and cookies sold fast! Soon the shelves were empty and everyone was full of joy.",
+			"illustration": "Empty trays and giggling pastries celebrating their success."
+		},
+		{
+			"page": 15,
+			"text": "“We did it!” cheered Muffin Millie. “Hooray for Captain Cupcake!”",
+			"illustration": "Pastries jumping with joy as confetti of sprinkles falls around them."
+		},
+		{
+			"page": 16,
+			"text": "Captain Cupcake smiled. “No, hooray for all of us! A captain always needs a crew!”",
+			"illustration": "Cupcake putting an arm around his friends, everyone smiling proudly."
+		},
+		{
+			"page": 17,
+			"text": "The sun went down, painting the bakery golden and pink.",
+			"illustration": "Soft evening light glowing through the bakery windows."
+		},
+		{
+			"page": 18,
+			"text": "The pastries yawned and snuggled into their trays for a sweet night’s rest.",
+			"illustration": "The pastries tucked under napkins like blankets, sleepy smiles all around."
+		},
+		{
+			"page": 19,
+			"text": "Captain Cupcake climbed to his shelf and straightened his hat.",
+			"illustration": "Captain Cupcake back on his shelf, looking cozy and proud."
+		},
+		{
+			"page": 20,
+			"text": "Outside, the stars twinkled. One sprinkle on his frosting shimmered too—a captain’s star.",
+			"illustration": "Peaceful night sky through the bakery window, a single sprinkle glowing on Captain Cupcake."
+		}
+	]
+}

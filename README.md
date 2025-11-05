@@ -48,3 +48,12 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+## Books tab
+
+This app includes a simple "Books" tab that fetches and displays a grid of book covers from the Open Library public API. Pull down to refresh the grid. The screen lives at `app/(tabs)/books.tsx` and is added to the tab bar in `app/(tabs)/_layout.tsx`.
+
+Notes:
+
+- Covers are loaded from `https://covers.openlibrary.org` using IDs returned by a basic search query (`children`).
+- If a cover isn't available for a result, the item shows a neutral placeholder background.
