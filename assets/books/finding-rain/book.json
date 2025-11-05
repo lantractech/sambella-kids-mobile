@@ -1,7 +1,7 @@
 {
 	"id": "finding-rain",
 	"title": "Finding Rain",
-	"cover": "/books/finding-rain/cover.jpg",
+	"cover": "@/assets/books/finding-rain/cover.jpg",
 	"ageRange": "3-6",
 	"description": "A soft picture book about a child who follows rain puddles through the neighborhood and finds small wonders after the storm."
 }

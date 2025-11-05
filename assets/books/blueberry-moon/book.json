@@ -1,7 +1,7 @@
 {
 	"id": "blueberry-moon",
 	"title": "Blueberry Moon",
-	"cover": "/books/blueberry-moon/cover.jpg",
+	"cover": "@/assets/books/blueberry-moon/cover.jpg",
 	"ageRange": "2-5",
 	"description": "An early-reader about friends gathering berries by moonlight and discovering small acts of courage."
 }

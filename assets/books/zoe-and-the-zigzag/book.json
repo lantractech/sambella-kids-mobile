@@ -1,7 +1,7 @@
 {
 	"id": "zoe-and-the-zigzag",
 	"title": "Zoe and the Zigzag",
-	"cover": "/books/zoe-and-the-zigzag/cover.jpg",
+	"cover": "@/assets/books/zoe-and-the-zigzag/cover.jpg",
 	"ageRange": "3-6",
 	"description": "Zoe draws a zigzag that comes to life and takes her on a creative day of doodles and play.",
 	"pages": [

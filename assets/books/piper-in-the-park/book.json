@@ -1,7 +1,7 @@
 {
 	"id": "piper-in-the-park",
 	"title": "Piper in the Park",
-	"cover": "/books/piper-in-the-park/cover.jpg",
+	"cover": "@/assets/books/piper-in-the-park/cover.jpg",
 	"ageRange": "2-5",
 	"description": "Piper explores the park and meets new animal friends; a playful story about discovery and sharing."
 }

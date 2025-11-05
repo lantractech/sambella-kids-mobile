@@ -1,7 +1,7 @@
 {
 	"id": "the-sleepy-cloud",
 	"title": "The Sleepy Cloud",
-	"cover": "/books/the-sleepy-cloud/cover.jpg",
+	"cover": "@/assets/books/the-sleepy-cloud/cover.jpg",
 	"ageRange": "3-6",
 	"description": "A gentle bedtime story about a little cloud who learns to shine at night. Soothing rhythms and soft illustrations."
 }

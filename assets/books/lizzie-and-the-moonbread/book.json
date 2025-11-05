@@ -1,7 +1,7 @@
 {
 	"id": "Lizzie-and-the-moonbread",
 	"title": "Lizzie and the Moonbread",
-	"cover": "/books/lizzie-and-the-moonbread/cover.jpg",
+	"cover": "@/assets/books/lizzie-and-the-moonbread/cover.jpg",
 	"ageRange": "3-6",
 	"description": "Lizzie bakes a tiny moonbread that grows and sprouts friends — a warm, whimsical tale about sharing."
 }

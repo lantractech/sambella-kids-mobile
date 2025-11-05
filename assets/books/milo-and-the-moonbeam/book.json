@@ -1,7 +1,7 @@
 {
 	"id": "milo-and-the-moonbeam",
 	"title": "Milo and the Moonbeam",
-	"cover": "/books/milo-and-the-moonbeam/cover.jpg",
+	"cover": "@/assets/books/milo-and-the-moonbeam/cover.jpg",
 	"ageRange": "3-6",
 	"description": "A curious mouse named Milo follows a moonbeam on a gentle nighttime adventure about wonder and friendship."
 }

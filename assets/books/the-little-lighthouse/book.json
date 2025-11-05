@@ -1,7 +1,7 @@
 {
 	"id": "the-little-lighthouse",
 	"title": "The Little Lighthouse",
-	"cover": "/books/the-little-lighthouse/cover.jpg",
+	"cover": "@/assets/books/the-little-lighthouse/cover.jpg",
 	"ageRange": "4-8",
 	"description": "A heartwarming tale of a small lighthouse who learns its light matters — perfect for readers learning courage and community."
 }

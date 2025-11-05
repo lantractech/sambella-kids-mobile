@@ -1,7 +1,7 @@
 {
 	"id": "grandma-glees-kitchen",
 	"title": "Grandma Glee's Kitchen",
-	"cover": "/books/grandma-glees-kitchen/cover.jpg",
+	"cover": "@/assets/books/grandma-glees-kitchen/cover.jpg",
 	"ageRange": "2-6",
 	"description": "A warm, sensory story about baking with Grandma Glee — smells, sounds, and memories shared across generations."
 }

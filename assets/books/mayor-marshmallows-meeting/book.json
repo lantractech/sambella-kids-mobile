@@ -1,7 +1,7 @@
 {
 	"id": "mayor-marshmallows-meeting",
 	"title": "Mayor Marshmallow's Meeting",
-	"cover": "/books/mayor-marshmallows-meeting/cover.jpg",
+	"cover": "@/assets/books/mayor-marshmallows-meeting/cover.jpg",
 	"ageRange": "3-6",
 	"description": "A silly town meeting led by Mayor Marshmallow where everyone accidentally brings dessert instead of reports — lots of laughs and wobbly speeches."
 }

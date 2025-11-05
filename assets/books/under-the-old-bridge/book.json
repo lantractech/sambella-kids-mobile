@@ -1,7 +1,7 @@
 {
 	"id": "under-the-old-bridge",
 	"title": "Under the Old Bridge",
-	"cover": "/books/under-the-old-bridge/cover.jpg",
+	"cover": "@/assets/books/under-the-old-bridge/cover.jpg",
 	"ageRange": "4-8",
 	"description": "A gentle, creative story about children who discover tiny homes under a bridge and learn to care for small creatures."
 }

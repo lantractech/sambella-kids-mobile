@@ -1,7 +1,7 @@
 {
 	"id": "when-socks-sing",
 	"title": "When Socks Sing",
-	"cover": "/books/when-socks-sing/cover.jpg",
+	"cover": "@/assets/books/when-socks-sing/cover.jpg",
 	"ageRange": "2-5",
 	"description": "A bedtime romp where a pair of mismatched socks discover they have the perfect duet — silly rhymes and cozy endings."
 }

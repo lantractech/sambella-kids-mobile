@@ -1,7 +1,7 @@
 {
 	"id": "lucys-lantern-labyrinth",
 	"title": "Lucy's Lantern Labyrinth",
-	"cover": "/books/lucys-lantern-labyrinth/cover.jpg",
+	"cover": "@/assets/books/lucys-lantern-labyrinth/cover.jpg",
 	"ageRange": "5-9",
 	"description": "Lucy explores a maze of glowing lanterns and finds playful riddles and friends waiting at every turn."
 }

@@ -1,7 +1,7 @@
 {
 	"id": "captain-cupcake",
 	"title": "Captain Cupcake",
-	"cover": "/books/captain-cupcake/cover.jpg",
+	"cover": "@/assets/books/captain-cupcake/cover.jpg",
 	"ageRange": "3-5",
 	"description": "A spritely adventure where a bakery mascot learns leadership while saving the neighborhood bake sale.",
 	"pages": [

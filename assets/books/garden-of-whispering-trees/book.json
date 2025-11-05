@@ -1,7 +1,7 @@
 {
 	"id": "garden-of-whispering-trees",
 	"title": "The Garden of Whispering Trees",
-	"cover": "/books/garden-of-whispering-trees/cover.jpg",
+	"cover": "@/assets/books/garden-of-whispering-trees/cover.jpg",
 	"ageRange": "5-9",
 	"description": "A lyrical story about a secret garden where trees share stories; encourages imagination and listening to nature."
 }

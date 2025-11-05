@@ -1,7 +1,7 @@
 {
 	"id": "professor-pancakes-pants",
 	"title": "Professor Pancake's Pants",
-	"cover": "/books/professor-pancakes-pants/cover.jpg",
+	"cover": "@/assets/books/professor-pancakes-pants/cover.jpg",
 	"ageRange": "4-8",
 	"description": "Professor Pancake discovers his pants are actually a map to breakfast — a laugh-out-loud tale about accidental inventions."
 }

@@ -1,7 +1,7 @@
 {
 	"id": "waffles-in-winter",
 	"title": "Waffles in Winter",
-	"cover": "/books/waffles-in-winter/cover.jpg",
+	"cover": "@/assets/books/waffles-in-winter/cover.jpg",
 	"ageRange": "3-7",
 	"description": "A cozy story about friends who build a waffle-warm den and share syrupy smiles on chilly mornings."
 }

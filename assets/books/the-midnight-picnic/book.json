@@ -1,7 +1,7 @@
 {
 	"id": "the-midnight-picnic",
 	"title": "The Midnight Picnic",
-	"cover": "/books/the-midnight-picnic/cover.jpg",
+	"cover": "@/assets/books/the-midnight-picnic/cover.jpg",
 	"ageRange": "4-8",
 	"description": "Friends tiptoe out for a secret picnic under the stars and learn about courage and sharing."
 }

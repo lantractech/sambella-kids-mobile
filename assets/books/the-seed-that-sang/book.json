@@ -1,7 +1,7 @@
 {
 	"id": "the-seed-that-sang",
 	"title": "The Seed That Sang",
-	"cover": "/books/the-seed-that-sang/cover.jpg",
+	"cover": "@/assets/books/the-seed-that-sang/cover.jpg",
 	"ageRange": "3-7",
 	"description": "A lyrical picture book where a seed hums and grows into a tree, teaching patience and growth."
 }

@@ -1,7 +1,7 @@
 {
 	"id": "lunas-little-library",
 	"title": "Luna's Little Library",
-	"cover": "/books/lunas-little-library/cover.jpg",
+	"cover": "@/assets/books/lunas-little-library/cover.jpg",
 	"ageRange": "2-6",
 	"description": "Tiny Luna shares her shelf of picture books with forest friends — a gentle read-aloud about sharing and stories."
 }

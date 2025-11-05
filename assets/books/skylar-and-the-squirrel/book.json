@@ -1,7 +1,7 @@
 {
 	"id": "skylar-and-the-squirrel",
 	"title": "Skylar and the Squirrel",
-	"cover": "/books/skylar-and-the-squirrel/cover.jpg",
+	"cover": "@/assets/books/skylar-and-the-squirrel/cover.jpg",
 	"ageRange": "2-5",
 	"description": "A humorous morning adventure when Skylar meets a bold squirrel who wants the last pancake."
 }

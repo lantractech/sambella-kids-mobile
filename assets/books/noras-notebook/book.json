@@ -1,7 +1,7 @@
 {
 	"id": "noras-notebook",
 	"title": "Nora's Notebook",
-	"cover": "/books/noras-notebook/cover.jpg",
+	"cover": "@/assets/books/noras-notebook/cover.jpg",
 	"ageRange": "6-10",
 	"description": "Nora keeps a little notebook of discoveries. A gentle early-reader chapter book about curiosity, notes, and making small discoveries every day."
 }

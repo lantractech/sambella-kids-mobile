@@ -1,7 +1,7 @@
 {
 	"id": "a-secret-in-the-attic",
 	"title": "A Secret in the Attic",
-	"cover": "/books/a-secret-in-the-attic/cover.jpg",
+	"cover": "@/assets/books/a-secret-in-the-attic/cover.jpg",
 	"ageRange": "5-9",
 	"description": "A playful mystery where friends find a dusty trunk and piece together a family story using clues and imagination.",
 	"pages": [

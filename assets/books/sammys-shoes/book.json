@@ -1,7 +1,7 @@
 {
 	"id": "sammys-shoes",
 	"title": "Sammy's Shoes",
-	"cover": "/books/sammys-shoes/cover.jpg",
+	"cover": "@/assets/books/sammys-shoes/cover.jpg",
 	"ageRange": "2-5",
 	"description": "Sammy’s magical red sneakers let him leap over gates and skip across puddles, but when they start shrinking, he fears his adventures are over. With his sister’s help and a dash of imagination, Sammy discovers the real magic comes from his own brave heart."
 }

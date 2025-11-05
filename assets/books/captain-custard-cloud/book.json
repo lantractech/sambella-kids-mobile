@@ -1,7 +1,7 @@
 {
 	"id": "captain-custard-cloud",
 	"title": "Captain Custard and the Cloud Monster",
-	"cover": "/books/captain-custard-cloud/cover.jpg",
+	"cover": "@/assets/books/captain-custard-cloud/cover.jpg",
 	"ageRange": "4-8",
 	"description": "Captain Custard sails a puddle-ship to calm a squishy cloud monster — a goofy adventure about kindness and unexpected friendships."
 }

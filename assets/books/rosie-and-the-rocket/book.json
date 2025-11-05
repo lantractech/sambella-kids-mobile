@@ -1,7 +1,7 @@
 {
 	"id": "rosie-and-the-rocket",
 	"title": "Rosie and the Rocket",
-	"cover": "/books/rosie-and-the-rocket/cover.jpg",
+	"cover": "@/assets/books/rosie-and-the-rocket/cover.jpg",
 	"ageRange": "5-9",
 	"description": "Rosie wants to touch the stars. An adventurous tale with colorful art and a message about curiosity."
 }

@@ -1,7 +1,7 @@
 {
 	"id": "the-starlit-backpack",
 	"title": "The Starlit Backpack",
-	"cover": "/books/the-starlit-backpack/cover.jpg",
+	"cover": "@/assets/books/the-starlit-backpack/cover.jpg",
 	"ageRange": "4-8",
 	"description": "A cozy, imaginative tale about a backpack that glows with tiny stars and takes its owner on gentle, nighttime adventures.",
 	"pages": [

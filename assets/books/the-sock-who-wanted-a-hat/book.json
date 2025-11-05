@@ -1,7 +1,7 @@
 {
 	"id": "the-sock-who-wanted-a-hat",
 	"title": "The Sock Who Wanted a Hat",
-	"cover": "/books/the-sock-who-wanted-a-hat/cover.jpg",
+	"cover": "@/assets/books/the-sock-who-wanted-a-hat/cover.jpg",
 	"ageRange": "2-5",
 	"description": "A silly tale of a curious sock who dreams of wearing a hat and learns about being proud of who you are."
 }
