@@ -1,6 +1,6 @@
 // AUTO-GENERATED FILE - DO NOT EDIT
 // Run: npm run generate-metadata
-// Generated 2025-11-05T08:48:24.655Z
+// Generated 2025-11-05T10:45:08.826Z
 
 export type BookJson = any;
 export type BookRegistryItem = { id: string; meta: BookJson; cover: number; pages: number[]; audio: number[] };

@@ -1,13 +1,14 @@
 import { Image } from 'expo-image';
 import React, { useCallback, useMemo } from 'react';
 import {
+	Animated,
+	Pressable,
 	StyleSheet,
 	useWindowDimensions,
 	View,
 	type NativeScrollEvent,
 	type NativeSyntheticEvent,
 } from 'react-native';
-import { FlatList, Pressable } from 'react-native-gesture-handler';
 
 export type BookItem = {
 	key: string;
@@ -74,7 +75,7 @@ export default function BookGrid({
 
 	const grid = useMemo(
 		() => (
-			<FlatList
+			<Animated.FlatList
 				style={{ flex: 1 }}
 				key={numColumns}
 				data={items}
@@ -86,7 +87,7 @@ export default function BookGrid({
 					topInset ? { paddingTop: topInset } : null,
 				]}
 				columnWrapperStyle={styles.row}
-				onScroll={onScroll}
+				onScroll={onScroll as any}
 				scrollEventThrottle={scrollEventThrottle}
 			/>
 		),

@@ -1,8 +1,4 @@
-import {
-	audio as audioMap,
-	bookMeta,
-	pages as pagesMap,
-} from '@/assets/books/metadata';
+import { audio as audioMap, pages as pagesMap } from '@/assets/books/metadata';
 import { ThemedText } from '@/components/themed-text';
 import { Colors } from '@/constants/theme';
 import { useColorScheme } from '@/hooks/use-color-scheme';
@@ -32,6 +28,7 @@ export default function ReadBookScreen() {
 	const colorScheme = useColorScheme();
 	const colors = Colors[colorScheme ?? 'light'];
 	const { width, height } = useWindowDimensions();
+	const isLandscape = width > height;
 
 	const allPages: number[] = useMemo(
 		() => (id ? (pagesMap as any)[id] ?? [] : []),
@@ -41,7 +38,7 @@ export default function ReadBookScreen() {
 		() => (id ? (audioMap as any)[id] ?? [] : []),
 		[id]
 	);
-	const meta = id ? (bookMeta as any)[id] : undefined;
+	// Title removed from header overlay; no meta needed here
 	const [index, setIndex] = useState(0);
 	const listRef = useRef<FlatList<number>>(null);
 	const soundRef = useRef<any>(null);
@@ -51,6 +48,7 @@ export default function ReadBookScreen() {
 	const playingIndexRef = useRef<number | null>(null);
 	const autoPlayTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 	const pendingAutoIndexRef = useRef<number | null>(null);
+	const layoutAdjustingRef = useRef(false);
 	const AUTO_DELAY_MS = 2000;
 
 	// Debug: log audio API shape once
@@ -97,6 +95,7 @@ export default function ReadBookScreen() {
 	const [isPlaying, setIsPlaying] = useState(false);
 
 	const onMomentumScrollEnd = (e: any) => {
+		if (layoutAdjustingRef.current) return;
 		const x = e?.nativeEvent?.contentOffset?.x ?? 0;
 		const i = Math.round(x / width);
 		if (Number.isFinite(i) && i !== index) setIndex(i);
@@ -105,8 +104,8 @@ export default function ReadBookScreen() {
 	// Also track during scroll to catch cases where momentum/end events don't fire reliably
 	const onScroll = React.useCallback(
 		(e: any) => {
-			// During autoplay programmatic scroll, avoid mid-animation index churn
-			if (autoPlayNextRef.current) return;
+			// During autoplay or layout adjustments, avoid mid-animation index churn
+			if (autoPlayNextRef.current || layoutAdjustingRef.current) return;
 			const x = e?.nativeEvent?.contentOffset?.x ?? 0;
 			const i = Math.round(x / width);
 			if (Number.isFinite(i) && i !== index) {
@@ -135,6 +134,27 @@ export default function ReadBookScreen() {
 	);
 	const goPrev = () => canPrev && scrollToIndex(index - 1);
 	const goNext = () => canNext && scrollToIndex(index + 1);
+
+	// Recenter the current page when orientation/dimensions change, without disrupting playback
+	React.useEffect(() => {
+		layoutAdjustingRef.current = true;
+		const id = requestAnimationFrame(() => {
+			try {
+				listRef.current?.scrollToOffset({
+					offset: index * width,
+					animated: false,
+				});
+			} catch {}
+			const id2 = requestAnimationFrame(() => {
+				layoutAdjustingRef.current = false;
+			});
+			return () => cancelAnimationFrame(id2);
+		});
+		return () => {
+			layoutAdjustingRef.current = false;
+			cancelAnimationFrame(id);
+		};
+	}, [width, height, index]);
 
 	// Create sound across varying API shapes (expo-audio versions)
 	const createSoundNormalized = React.useCallback(async (source: any) => {
@@ -317,6 +337,8 @@ export default function ReadBookScreen() {
 
 	// Stop audio when page changes; manage pending autoplay
 	React.useEffect(() => {
+		// Ignore transient index changes caused by orientation/layout adjustments
+		if (layoutAdjustingRef.current) return;
 		// Clear any pending autoplay timer when index changes
 		if (autoPlayTimerRef.current) {
 			clearTimeout(autoPlayTimerRef.current);
@@ -363,54 +385,8 @@ export default function ReadBookScreen() {
 	}, [autoplay, allAudio, index, playForIndex]);
 
 	return (
-		<View style={{ flex: 1, backgroundColor: colors.background }}>
-			<Stack.Screen
-				options={{
-					header: () => (
-						<View
-							style={{
-								backgroundColor: colors.background,
-								paddingTop: insets.top,
-							}}
-						>
-							<View
-								style={{
-									height: 36,
-									flexDirection: 'row',
-									alignItems: 'center',
-									paddingHorizontal: 10,
-									borderBottomWidth: StyleSheet.hairlineWidth,
-									borderBottomColor: 'rgba(0,0,0,0.12)',
-								}}
-							>
-								<Pressable
-									onPress={() => router.back()}
-									style={{ padding: 4, marginRight: 6 }}
-									hitSlop={10}
-								>
-									<Ionicons
-										name='chevron-back'
-										size={20}
-										color={colors.tint ?? colors.text}
-									/>
-								</Pressable>
-								<ThemedText
-									type='defaultSemiBold'
-									numberOfLines={1}
-									style={{ flex: 1 }}
-								>
-									{meta?.title ?? 'Read'}
-								</ThemedText>
-								{allPages.length > 0 ? (
-									<ThemedText type='default' style={{ opacity: 0.7 }}>
-										{index + 1}/{allPages.length}
-									</ThemedText>
-								) : null}
-							</View>
-						</View>
-					),
-				}}
-			/>
+		<View style={{ flex: 1, backgroundColor: '#000000' }}>
+			<Stack.Screen options={{ headerShown: false }} />
 
 			{allPages.length === 0 ? (
 				<View
@@ -428,36 +404,53 @@ export default function ReadBookScreen() {
 			) : (
 				<View style={{ flex: 1 }}>
 					<FlatList
+						key={`w${width}h${height}`}
 						ref={listRef}
 						data={allPages}
 						keyExtractor={(_, i) => String(i)}
 						horizontal
 						pagingEnabled
 						showsHorizontalScrollIndicator={false}
+						initialScrollIndex={index}
+						getItemLayout={(_, i) => ({
+							length: width,
+							offset: width * i,
+							index: i,
+						})}
 						onMomentumScrollEnd={onMomentumScrollEnd}
 						onScrollEndDrag={onMomentumScrollEnd}
 						onScroll={onScroll}
 						scrollEventThrottle={16}
 						renderItem={({ item }) => (
-							<View
-								style={{
-									width,
-									height: height - insets.top - insets.bottom - 36,
-								}}
-							>
+							<View style={{ width, height: height - insets.bottom }}>
 								<Image
 									source={item}
 									style={styles.page}
 									contentFit='contain'
 									transition={150}
-									recyclingKey={String(item)}
 								/>
 							</View>
 						)}
+						onScrollToIndexFailed={(info) => {
+							requestAnimationFrame(() => {
+								try {
+									listRef.current?.scrollToOffset({
+										offset: info.index * width,
+										animated: false,
+									});
+								} catch {}
+							});
+						}}
 					/>
 
 					{/* On-screen next/prev controls */}
-					<View style={styles.controlsOverlay} pointerEvents='box-none'>
+					<View
+						style={[
+							styles.controlsOverlay,
+							{ paddingHorizontal: isLandscape ? 60 : 8 },
+						]}
+						pointerEvents='box-none'
+					>
 						<View style={styles.sideZone}>
 							<Pressable
 								onPress={goPrev}
@@ -513,9 +506,9 @@ export default function ReadBookScreen() {
 									? isPlaying
 										? { backgroundColor: 'rgba(255, 32, 86, 0.4)' }
 										: {
-												backgroundColor: 'rgba(255,255,255,0.4)',
-												borderWidth: StyleSheet.hairlineWidth,
-												borderColor: 'rgba(0,0,0,0.12)',
+												backgroundColor: 'rgba(255,255,255,0.75)',
+												borderWidth: 2,
+												borderColor: '#ff2056',
 										  }
 									: styles.controlDisabled,
 							]}
@@ -537,6 +530,47 @@ export default function ReadBookScreen() {
 					</View>
 				</View>
 			)}
+
+			{/* Top navigation overlay */}
+			<View
+				style={{
+					position: 'absolute',
+					top: 0,
+					left: 0,
+					right: 0,
+					paddingTop: insets.top,
+					backgroundColor: 'transparent',
+					zIndex: 10,
+				}}
+				pointerEvents='box-none'
+			>
+				<View
+					style={{
+						height: 36,
+						flexDirection: 'row',
+						alignItems: 'center',
+						paddingHorizontal: isLandscape ? 60 : 10,
+					}}
+				>
+					<Pressable
+						onPress={() => router.back()}
+						style={{ padding: 4, marginRight: 6 }}
+						hitSlop={10}
+					>
+						<Ionicons name='chevron-back' size={20} color={'#ffffff'} />
+					</Pressable>
+					{/* Spacer to push page numbers to the right after removing title */}
+					<View style={{ flex: 1 }} />
+					{allPages.length > 0 ? (
+						<ThemedText
+							type='default'
+							style={{ opacity: 0.8, color: '#ffffff' }}
+						>
+							{index + 1}/{allPages.length}
+						</ThemedText>
+					) : null}
+				</View>
+			</View>
 		</View>
 	);
 }
@@ -589,10 +623,5 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgba(255, 32, 86, 0.6)',
 		alignItems: 'center',
 		justifyContent: 'center',
-		shadowColor: '#000',
-		shadowOpacity: 0.15,
-		shadowRadius: 6,
-		shadowOffset: { width: 0, height: 2 },
-		elevation: 3,
 	},
 });
