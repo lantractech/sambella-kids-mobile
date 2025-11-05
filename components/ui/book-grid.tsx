@@ -1,40 +1,33 @@
-import { ThemedText } from '@/components/themed-text';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
 import { Image } from 'expo-image';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import {
-	ActivityIndicator,
-	RefreshControl,
 	StyleSheet,
+	useWindowDimensions,
 	View,
 	type NativeScrollEvent,
 	type NativeSyntheticEvent,
 } from 'react-native';
 import { FlatList, Pressable } from 'react-native-gesture-handler';
 
-export type Book = {
+export type BookItem = {
 	key: string;
 	title: string;
-	coverId?: number;
-	author?: string;
+	coverId?: number; // when using remote Open Library
+	cover?: number; // when using local require() asset
 };
 
 type Props = {
-	query?: string;
 	numColumns?: number;
-	onSelect?: (book: Book) => void;
+	onSelect?: (book: BookItem) => void;
 	title?: string;
 	subtitle?: string;
 	onScroll?: (e: NativeSyntheticEvent<NativeScrollEvent>) => void;
 	scrollEventThrottle?: number;
 	topInset?: number;
+	items: BookItem[]; // local data (uses cover)
 };
 
-const DEFAULT_QUERY = 'children';
-
 export default function BookGrid({
-	query = DEFAULT_QUERY,
 	numColumns = 3,
 	onSelect,
 	title = 'Books',
@@ -42,64 +35,30 @@ export default function BookGrid({
 	onScroll,
 	scrollEventThrottle = 16,
 	topInset = 0,
+	items,
 }: Props) {
-	const colorScheme = useColorScheme();
-	const [books, setBooks] = useState<Book[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [refreshing, setRefreshing] = useState(false);
-	const [error, setError] = useState<string | null>(null);
-
-	const bg = Colors[colorScheme ?? 'light'].background;
-
-	const fetchBooks = useCallback(async () => {
-		try {
-			setError(null);
-			const res = await fetch(
-				`https://openlibrary.org/search.json?q=${encodeURIComponent(
-					query
-				)}&limit=60`
-			);
-			if (!res.ok) throw new Error(`Network error: ${res.status}`);
-			const data = await res.json();
-			const mapped: Book[] = (data?.docs ?? [])
-				.map((d: any, idx: number) => ({
-					key: String(d.key ?? d.cover_edition_key ?? `${idx}`),
-					title: d.title ?? 'Untitled',
-					coverId: d.cover_i,
-					author: Array.isArray(d.author_name)
-						? d.author_name[0]
-						: d.author_name,
-				}))
-				.filter((b: Book) => !!b.coverId);
-			setBooks(mapped);
-		} catch (e: any) {
-			setError(e?.message ?? 'Failed to load books');
-		} finally {
-			setLoading(false);
-		}
-	}, [query]);
-
-	useEffect(() => {
-		setLoading(true);
-		fetchBooks();
-	}, [fetchBooks]);
-
-	const onRefresh = useCallback(async () => {
-		setRefreshing(true);
-		await fetchBooks();
-		setRefreshing(false);
-	}, [fetchBooks]);
+	const { width } = useWindowDimensions();
+	const GUTTER = 12; // space between columns
+	const cardWidth = Math.floor(
+		(width - (numColumns - 1) * GUTTER) / numColumns
+	);
+	// Items are guaranteed to exist; no remote fetching fallback
 
 	const renderItem = useCallback(
-		({ item }: { item: Book }) => {
-			const uri = item.coverId
-				? `https://covers.openlibrary.org/b/id/${item.coverId}-M.jpg`
+		({ item }: { item: BookItem }) => {
+			const source = item.cover
+				? item.cover
+				: item.coverId
+				? { uri: `https://covers.openlibrary.org/b/id/${item.coverId}-M.jpg` }
 				: undefined;
 			return (
-				<Pressable style={styles.card} onPress={() => onSelect?.(item)}>
-					{uri ? (
+				<Pressable
+					style={[styles.card, { width: cardWidth }]}
+					onPress={() => onSelect?.(item)}
+				>
+					{source ? (
 						<Image
-							source={{ uri }}
+							source={source as any}
 							style={styles.cover}
 							contentFit='cover'
 							transition={200}
@@ -110,14 +69,15 @@ export default function BookGrid({
 				</Pressable>
 			);
 		},
-		[onSelect]
+		[cardWidth, onSelect]
 	);
 
 	const grid = useMemo(
 		() => (
 			<FlatList
 				style={{ flex: 1 }}
-				data={books}
+				key={numColumns}
+				data={items}
 				keyExtractor={(item) => item.key}
 				numColumns={numColumns}
 				renderItem={renderItem}
@@ -128,36 +88,12 @@ export default function BookGrid({
 				columnWrapperStyle={styles.row}
 				onScroll={onScroll}
 				scrollEventThrottle={scrollEventThrottle}
-				refreshControl={
-					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-				}
 			/>
 		),
-		[
-			books,
-			numColumns,
-			onRefresh,
-			onScroll,
-			refreshing,
-			renderItem,
-			scrollEventThrottle,
-			topInset,
-		]
+		[items, numColumns, onScroll, renderItem, scrollEventThrottle, topInset]
 	);
 
-	return (
-		<View style={{ flex: 1 }}>
-			{loading ? (
-				<View style={[styles.loading, { backgroundColor: bg }]}>
-					<ActivityIndicator />
-				</View>
-			) : error ? (
-				<ThemedText style={{ color: 'crimson' }}>{error}</ThemedText>
-			) : (
-				grid
-			)}
-		</View>
-	);
+	return <View style={{ flex: 1 }}>{grid}</View>;
 }
 
 const styles = StyleSheet.create({
@@ -176,14 +112,16 @@ const styles = StyleSheet.create({
 		paddingBottom: 24,
 	},
 	row: {
-		gap: 8,
+		gap: 12,
+		justifyContent: 'flex-start',
 	},
 	card: {
-		flex: 1,
+		// width computed per item to avoid stretching when last row has fewer items
 		aspectRatio: 0.66,
 		borderRadius: 10,
 		overflow: 'hidden',
 		backgroundColor: '#e5e5e5',
+		marginBottom: 12,
 	},
 	cover: {
 		flex: 1,

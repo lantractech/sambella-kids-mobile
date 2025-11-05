@@ -1,111 +1,60 @@
 import { Image } from 'expo-image';
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import {
-	ActivityIndicator,
-	RefreshControl,
-	StyleSheet,
-	View,
-} from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { StyleSheet } from 'react-native';
 import { FlatList, Pressable } from 'react-native-gesture-handler';
 
 import ParallaxScrollView from '@/components/parallax-scroll-view';
 import { ThemedText } from '@/components/themed-text';
 import { ThemedView } from '@/components/themed-view';
 import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+// import { Colors } from '@/constants/theme';
+// import { useColorScheme } from '@/hooks/use-color-scheme';
+import { bookItems } from '@/assets/books/metadata';
+import { useRouter } from 'expo-router';
 
-type Book = {
-	key: string;
-	title: string;
-	coverId?: number;
-	author?: string;
-};
+type Book = { key: string; title: string; cover: number };
 
-const DEFAULT_QUERY = 'children';
+// Local-only: no remote fetching
 
 export default function BooksScreen() {
-	const colorScheme = useColorScheme();
-	const [books, setBooks] = useState<Book[]>([]);
-	const [loading, setLoading] = useState(true);
-	const [refreshing, setRefreshing] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+	// const colorScheme = useColorScheme();
+	const router = useRouter();
 
-	const bg = Colors[colorScheme ?? 'light'].background;
+	// const bg = Colors[colorScheme ?? 'light'].background;
 
-	const fetchBooks = useCallback(async (query: string = DEFAULT_QUERY) => {
-		try {
-			setError(null);
-			const res = await fetch(
-				`https://openlibrary.org/search.json?q=${encodeURIComponent(
-					query
-				)}&limit=60`
-			);
-			if (!res.ok) throw new Error(`Network error: ${res.status}`);
-			const data = await res.json();
-			const mapped: Book[] = (data?.docs ?? [])
-				.map((d: any, idx: number) => ({
-					key: String(d.key ?? d.cover_edition_key ?? `${idx}`),
-					title: d.title ?? 'Untitled',
-					coverId: d.cover_i,
-					author: Array.isArray(d.author_name)
-						? d.author_name[0]
-						: d.author_name,
-				}))
-				.filter((b: Book) => !!b.coverId);
-			setBooks(mapped);
-		} catch (e: any) {
-			setError(e?.message ?? 'Failed to load books');
-		} finally {
-			setLoading(false);
-		}
-	}, []);
-
-	useEffect(() => {
-		fetchBooks();
-	}, [fetchBooks]);
-
-	const onRefresh = useCallback(async () => {
-		setRefreshing(true);
-		await fetchBooks();
-		setRefreshing(false);
-	}, [fetchBooks]);
-
-	const renderItem = useCallback(({ item }: { item: Book }) => {
-		const uri = item.coverId
-			? `https://covers.openlibrary.org/b/id/${item.coverId}-M.jpg`
-			: undefined;
-		return (
-			<Pressable style={styles.card} onPress={() => {}}>
-				{uri ? (
+	const renderItem = useCallback(
+		({ item }: { item: Book }) => {
+			return (
+				<Pressable
+					style={styles.card}
+					onPress={() =>
+						router.push({ pathname: '/book/[id]', params: { id: item.key } })
+					}
+				>
 					<Image
-						source={{ uri }}
+						source={item.cover as any}
 						style={styles.cover}
 						contentFit='cover'
 						transition={200}
 					/>
-				) : (
-					<View style={[styles.cover, styles.placeholder]} />
-				)}
-			</Pressable>
-		);
-	}, []);
+				</Pressable>
+			);
+		},
+		[router]
+	);
 
 	const list = useMemo(
 		() => (
 			<FlatList
-				data={books}
+				data={bookItems as unknown as Book[]}
 				keyExtractor={(item) => item.key}
 				numColumns={3}
 				renderItem={renderItem}
 				contentContainerStyle={styles.listContent}
 				columnWrapperStyle={styles.row}
-				refreshControl={
-					<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-				}
 			/>
 		),
-		[books, onRefresh, refreshing, renderItem]
+		[renderItem]
 	);
 
 	return (
@@ -126,15 +75,7 @@ export default function BooksScreen() {
 					Browse popular book covers
 				</ThemedText>
 			</ThemedView>
-			{loading ? (
-				<View style={[styles.loading, { backgroundColor: bg }]}>
-					<ActivityIndicator />
-				</View>
-			) : error ? (
-				<ThemedText style={{ color: 'crimson' }}>{error}</ThemedText>
-			) : (
-				list
-			)}
+			{list}
 		</ParallaxScrollView>
 	);
 }

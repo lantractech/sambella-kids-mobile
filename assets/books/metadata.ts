@@ -1,0 +1,80 @@
+// AUTO-GENERATED FILE - DO NOT EDIT
+// Run: npm run generate-metadata
+// Generated 2025-11-05T08:48:24.655Z
+
+export type BookJson = any;
+export type BookRegistryItem = { id: string; meta: BookJson; cover: number; pages: number[]; audio: number[] };
+
+export const registry: BookRegistryItem[] = [
+  { id: 'a-secret-in-the-attic', meta: require('./a-secret-in-the-attic/book.json'), cover: require('./a-secret-in-the-attic/cover.jpg'), pages: [require('./a-secret-in-the-attic/page-1.png'), require('./a-secret-in-the-attic/page-2.png'), require('./a-secret-in-the-attic/page-3.png'), require('./a-secret-in-the-attic/page-4.png'), require('./a-secret-in-the-attic/page-5.png'), require('./a-secret-in-the-attic/page-6.png'), require('./a-secret-in-the-attic/page-7.png'), require('./a-secret-in-the-attic/page-8.png'), require('./a-secret-in-the-attic/page-9.png'), require('./a-secret-in-the-attic/page-10.png'), require('./a-secret-in-the-attic/page-11.png'), require('./a-secret-in-the-attic/page-12.png'), require('./a-secret-in-the-attic/page-13.png'), require('./a-secret-in-the-attic/page-14.png'), require('./a-secret-in-the-attic/page-15.png'), require('./a-secret-in-the-attic/page-16.png'), require('./a-secret-in-the-attic/page-17.png'), require('./a-secret-in-the-attic/page-18.png'), require('./a-secret-in-the-attic/page-19.png'), require('./a-secret-in-the-attic/page-20.png')], audio: [require('./a-secret-in-the-attic/audio-1.mp3'), require('./a-secret-in-the-attic/audio-2.mp3'), require('./a-secret-in-the-attic/audio-3.mp3'), require('./a-secret-in-the-attic/audio-4.mp3'), require('./a-secret-in-the-attic/audio-5.mp3'), require('./a-secret-in-the-attic/audio-6.mp3'), require('./a-secret-in-the-attic/audio-7.mp3'), require('./a-secret-in-the-attic/audio-8.mp3'), require('./a-secret-in-the-attic/audio-9.mp3'), require('./a-secret-in-the-attic/audio-10.mp3'), require('./a-secret-in-the-attic/audio-11.mp3'), require('./a-secret-in-the-attic/audio-12.mp3'), require('./a-secret-in-the-attic/audio-13.mp3'), require('./a-secret-in-the-attic/audio-14.mp3'), require('./a-secret-in-the-attic/audio-15.mp3'), require('./a-secret-in-the-attic/audio-16.mp3'), require('./a-secret-in-the-attic/audio-17.mp3'), require('./a-secret-in-the-attic/audio-18.mp3'), require('./a-secret-in-the-attic/audio-19.mp3'), require('./a-secret-in-the-attic/audio-20.mp3')] },
+  { id: 'ben-and-the-bicycle', meta: require('./ben-and-the-bicycle/book.json'), cover: require('./ben-and-the-bicycle/cover.jpg'), pages: [], audio: [] },
+  { id: 'blueberry-moon', meta: require('./blueberry-moon/book.json'), cover: require('./blueberry-moon/cover.jpg'), pages: [], audio: [] },
+  { id: 'captain-cupcake', meta: require('./captain-cupcake/book.json'), cover: require('./captain-cupcake/cover.jpg'), pages: [require('./captain-cupcake/page-1.png'), require('./captain-cupcake/page-2.png'), require('./captain-cupcake/page-3.png'), require('./captain-cupcake/page-4.png'), require('./captain-cupcake/page-5.png'), require('./captain-cupcake/page-6.png'), require('./captain-cupcake/page-7.png'), require('./captain-cupcake/page-8.png'), require('./captain-cupcake/page-9.png'), require('./captain-cupcake/page-10.png'), require('./captain-cupcake/page-11.png'), require('./captain-cupcake/page-12.png'), require('./captain-cupcake/page-13.png'), require('./captain-cupcake/page-14.png'), require('./captain-cupcake/page-15.png'), require('./captain-cupcake/page-16.png'), require('./captain-cupcake/page-17.png'), require('./captain-cupcake/page-18.png'), require('./captain-cupcake/page-19.png'), require('./captain-cupcake/page-20.png')], audio: [require('./captain-cupcake/audio-1.mp3'), require('./captain-cupcake/audio-2.mp3'), require('./captain-cupcake/audio-3.mp3'), require('./captain-cupcake/audio-4.mp3'), require('./captain-cupcake/audio-5.mp3'), require('./captain-cupcake/audio-6.mp3'), require('./captain-cupcake/audio-7.mp3'), require('./captain-cupcake/audio-8.mp3'), require('./captain-cupcake/audio-9.mp3'), require('./captain-cupcake/audio-10.mp3'), require('./captain-cupcake/audio-11.mp3'), require('./captain-cupcake/audio-12.mp3'), require('./captain-cupcake/audio-13.mp3'), require('./captain-cupcake/audio-14.mp3'), require('./captain-cupcake/audio-15.mp3'), require('./captain-cupcake/audio-16.mp3'), require('./captain-cupcake/audio-17.mp3'), require('./captain-cupcake/audio-18.mp3'), require('./captain-cupcake/audio-19.mp3'), require('./captain-cupcake/audio-20.mp3')] },
+  { id: 'captain-custard-cloud', meta: require('./captain-custard-cloud/book.json'), cover: require('./captain-custard-cloud/cover.jpg'), pages: [], audio: [] },
+  { id: 'finding-rain', meta: require('./finding-rain/book.json'), cover: require('./finding-rain/cover.jpg'), pages: [], audio: [] },
+  { id: 'finns-firefly', meta: require('./finns-firefly/book.json'), cover: require('./finns-firefly/cover.jpg'), pages: [], audio: [] },
+  { id: 'garden-of-whispering-trees', meta: require('./garden-of-whispering-trees/book.json'), cover: require('./garden-of-whispering-trees/cover.jpg'), pages: [], audio: [] },
+  { id: 'grandma-glees-kitchen', meta: require('./grandma-glees-kitchen/book.json'), cover: require('./grandma-glees-kitchen/cover.jpg'), pages: [], audio: [] },
+  { id: 'harry-the-hummingbird', meta: require('./harry-the-hummingbird/book.json'), cover: require('./harry-the-hummingbird/cover.jpg'), pages: [], audio: [] },
+  { id: 'lizzie-and-the-moonbread', meta: require('./lizzie-and-the-moonbread/book.json'), cover: require('./lizzie-and-the-moonbread/cover.jpg'), pages: [], audio: [] },
+  { id: 'lucys-lantern-labyrinth', meta: require('./lucys-lantern-labyrinth/book.json'), cover: require('./lucys-lantern-labyrinth/cover.jpg'), pages: [], audio: [] },
+  { id: 'lunas-little-library', meta: require('./lunas-little-library/book.json'), cover: require('./lunas-little-library/cover.jpg'), pages: [], audio: [] },
+  { id: 'maple-and-the-moon', meta: require('./maple-and-the-moon/book.json'), cover: require('./maple-and-the-moon/cover.jpg'), pages: [], audio: [] },
+  { id: 'marigolds-map', meta: require('./marigolds-map/book.json'), cover: require('./marigolds-map/cover.jpg'), pages: [], audio: [] },
+  { id: 'mayor-marshmallows-meeting', meta: require('./mayor-marshmallows-meeting/book.json'), cover: require('./mayor-marshmallows-meeting/cover.jpg'), pages: [], audio: [] },
+  { id: 'milo-and-the-moonbeam', meta: require('./milo-and-the-moonbeam/book.json'), cover: require('./milo-and-the-moonbeam/cover.jpg'), pages: [], audio: [] },
+  { id: 'mina-and-the-missing-star', meta: require('./mina-and-the-missing-star/book.json'), cover: require('./mina-and-the-missing-star/cover.jpg'), pages: [], audio: [] },
+  { id: 'noras-notebook', meta: require('./noras-notebook/book.json'), cover: require('./noras-notebook/cover.jpg'), pages: [], audio: [] },
+  { id: 'ollie-and-the-origami', meta: require('./ollie-and-the-origami/book.json'), cover: require('./ollie-and-the-origami/cover.jpg'), pages: [], audio: [] },
+  { id: 'penny-and-the-painted-door', meta: require('./penny-and-the-painted-door/book.json'), cover: require('./penny-and-the-painted-door/cover.jpg'), pages: [], audio: [] },
+  { id: 'pepper-and-the-parade', meta: require('./pepper-and-the-parade/book.json'), cover: require('./pepper-and-the-parade/cover.jpg'), pages: [], audio: [] },
+  { id: 'pickle-park-picnic', meta: require('./pickle-park-picnic/book.json'), cover: require('./pickle-park-picnic/cover.jpg'), pages: [], audio: [] },
+  { id: 'piper-in-the-park', meta: require('./piper-in-the-park/book.json'), cover: require('./piper-in-the-park/cover.jpg'), pages: [], audio: [] },
+  { id: 'professor-pancakes-pants', meta: require('./professor-pancakes-pants/book.json'), cover: require('./professor-pancakes-pants/cover.jpg'), pages: [], audio: [] },
+  { id: 'rosie-and-the-rocket', meta: require('./rosie-and-the-rocket/book.json'), cover: require('./rosie-and-the-rocket/cover.jpg'), pages: [], audio: [] },
+  { id: 'sammys-shoes', meta: require('./sammys-shoes/book.json'), cover: require('./sammys-shoes/cover.jpg'), pages: [], audio: [] },
+  { id: 'skylar-and-the-squirrel', meta: require('./skylar-and-the-squirrel/book.json'), cover: require('./skylar-and-the-squirrel/cover.jpg'), pages: [], audio: [] },
+  { id: 'tails-of-kindness', meta: require('./tails-of-kindness/book.json'), cover: require('./tails-of-kindness/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-biscuit-boat', meta: require('./the-biscuit-boat/book.json'), cover: require('./the-biscuit-boat/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-buttoned-barn', meta: require('./the-buttoned-barn/book.json'), cover: require('./the-buttoned-barn/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-cloud-circus', meta: require('./the-cloud-circus/book.json'), cover: require('./the-cloud-circus/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-great-snore-off', meta: require('./the-great-snore-off/book.json'), cover: require('./the-great-snore-off/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-little-lighthouse', meta: require('./the-little-lighthouse/book.json'), cover: require('./the-little-lighthouse/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-midnight-picnic', meta: require('./the-midnight-picnic/book.json'), cover: require('./the-midnight-picnic/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-paper-boat', meta: require('./the-paper-boat/book.json'), cover: require('./the-paper-boat/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-piano-pickle', meta: require('./the-piano-pickle/book.json'), cover: require('./the-piano-pickle/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-quiet-kite', meta: require('./the-quiet-kite/book.json'), cover: require('./the-quiet-kite/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-river-of-rainbows', meta: require('./the-river-of-rainbows/book.json'), cover: require('./the-river-of-rainbows/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-seed-that-sang', meta: require('./the-seed-that-sang/book.json'), cover: require('./the-seed-that-sang/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-sleepy-cloud', meta: require('./the-sleepy-cloud/book.json'), cover: require('./the-sleepy-cloud/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-sock-who-wanted-a-hat', meta: require('./the-sock-who-wanted-a-hat/book.json'), cover: require('./the-sock-who-wanted-a-hat/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-starlit-backpack', meta: require('./the-starlit-backpack/book.json'), cover: require('./the-starlit-backpack/cover.jpg'), pages: [require('./the-starlit-backpack/page-1.png'), require('./the-starlit-backpack/page-2.png'), require('./the-starlit-backpack/page-3.png'), require('./the-starlit-backpack/page-4.png'), require('./the-starlit-backpack/page-5.png'), require('./the-starlit-backpack/page-6.png'), require('./the-starlit-backpack/page-7.png'), require('./the-starlit-backpack/page-8.png'), require('./the-starlit-backpack/page-9.png'), require('./the-starlit-backpack/page-10.png'), require('./the-starlit-backpack/page-11.png'), require('./the-starlit-backpack/page-12.png'), require('./the-starlit-backpack/page-13.png'), require('./the-starlit-backpack/page-14.png'), require('./the-starlit-backpack/page-15.png'), require('./the-starlit-backpack/page-16.png'), require('./the-starlit-backpack/page-17.png'), require('./the-starlit-backpack/page-18.png'), require('./the-starlit-backpack/page-19.png'), require('./the-starlit-backpack/page-20.png')], audio: [require('./the-starlit-backpack/audio-1.mp3'), require('./the-starlit-backpack/audio-2.mp3'), require('./the-starlit-backpack/audio-3.mp3'), require('./the-starlit-backpack/audio-4.mp3'), require('./the-starlit-backpack/audio-5.mp3'), require('./the-starlit-backpack/audio-6.mp3'), require('./the-starlit-backpack/audio-7.mp3'), require('./the-starlit-backpack/audio-8.mp3'), require('./the-starlit-backpack/audio-9.mp3'), require('./the-starlit-backpack/audio-10.mp3'), require('./the-starlit-backpack/audio-11.mp3'), require('./the-starlit-backpack/audio-12.mp3'), require('./the-starlit-backpack/audio-13.mp3'), require('./the-starlit-backpack/audio-14.mp3'), require('./the-starlit-backpack/audio-15.mp3'), require('./the-starlit-backpack/audio-16.mp3'), require('./the-starlit-backpack/audio-17.mp3'), require('./the-starlit-backpack/audio-18.mp3'), require('./the-starlit-backpack/audio-19.mp3'), require('./the-starlit-backpack/audio-20.mp3')] },
+  { id: 'the-teacup-parade', meta: require('./the-teacup-parade/book.json'), cover: require('./the-teacup-parade/cover.jpg'), pages: [], audio: [] },
+  { id: 'the-tiny-tailor', meta: require('./the-tiny-tailor/book.json'), cover: require('./the-tiny-tailor/cover.jpg'), pages: [], audio: [] },
+  { id: 'under-the-old-bridge', meta: require('./under-the-old-bridge/book.json'), cover: require('./under-the-old-bridge/cover.jpg'), pages: [], audio: [] },
+  { id: 'waffles-in-winter', meta: require('./waffles-in-winter/book.json'), cover: require('./waffles-in-winter/cover.jpg'), pages: [], audio: [] },
+  { id: 'when-socks-sing', meta: require('./when-socks-sing/book.json'), cover: require('./when-socks-sing/cover.jpg'), pages: [], audio: [] },
+  { id: 'whispers-in-the-willow', meta: require('./whispers-in-the-willow/book.json'), cover: require('./whispers-in-the-willow/cover.jpg'), pages: [], audio: [] },
+  { id: 'zoe-and-the-zigzag', meta: require('./zoe-and-the-zigzag/book.json'), cover: require('./zoe-and-the-zigzag/cover.jpg'), pages: [require('./zoe-and-the-zigzag/page-1.png'), require('./zoe-and-the-zigzag/page-2.png'), require('./zoe-and-the-zigzag/page-3.png'), require('./zoe-and-the-zigzag/page-4.png'), require('./zoe-and-the-zigzag/page-5.png'), require('./zoe-and-the-zigzag/page-6.png'), require('./zoe-and-the-zigzag/page-7.png'), require('./zoe-and-the-zigzag/page-8.png'), require('./zoe-and-the-zigzag/page-9.png'), require('./zoe-and-the-zigzag/page-10.png'), require('./zoe-and-the-zigzag/page-11.png'), require('./zoe-and-the-zigzag/page-12.png'), require('./zoe-and-the-zigzag/page-13.png'), require('./zoe-and-the-zigzag/page-14.png'), require('./zoe-and-the-zigzag/page-15.png'), require('./zoe-and-the-zigzag/page-16.png'), require('./zoe-and-the-zigzag/page-17.png'), require('./zoe-and-the-zigzag/page-18.png'), require('./zoe-and-the-zigzag/page-19.png'), require('./zoe-and-the-zigzag/page-20.png')], audio: [require('./zoe-and-the-zigzag/audio-1.mp3'), require('./zoe-and-the-zigzag/audio-2.mp3'), require('./zoe-and-the-zigzag/audio-3.mp3'), require('./zoe-and-the-zigzag/audio-4.mp3'), require('./zoe-and-the-zigzag/audio-5.mp3'), require('./zoe-and-the-zigzag/audio-6.mp3'), require('./zoe-and-the-zigzag/audio-7.mp3'), require('./zoe-and-the-zigzag/audio-8.mp3'), require('./zoe-and-the-zigzag/audio-9.mp3'), require('./zoe-and-the-zigzag/audio-10.mp3'), require('./zoe-and-the-zigzag/audio-11.mp3'), require('./zoe-and-the-zigzag/audio-12.mp3'), require('./zoe-and-the-zigzag/audio-13.mp3'), require('./zoe-and-the-zigzag/audio-14.mp3'), require('./zoe-and-the-zigzag/audio-15.mp3'), require('./zoe-and-the-zigzag/audio-16.mp3'), require('./zoe-and-the-zigzag/audio-17.mp3'), require('./zoe-and-the-zigzag/audio-18.mp3'), require('./zoe-and-the-zigzag/audio-19.mp3'), require('./zoe-and-the-zigzag/audio-20.mp3')] }
+];
+
+export const bookIds: string[] = registry.map((r) => r.id);
+export const bookMeta: Record<string, BookJson> = Object.fromEntries(
+  registry.map((r) => [r.id, r.meta])
+);
+export default bookMeta;
+export const covers: Record<string, number> = Object.fromEntries(
+  registry.map((r) => [r.id, r.cover])
+);
+export const pages: Record<string, number[]> = Object.fromEntries(
+	registry.map((r) => [r.id, r.pages])
+);
+export const audio: Record<string, number[]> = Object.fromEntries(
+	registry.map((r) => [r.id, r.audio])
+);
+export type BookListItem = { key: string; title: string; cover: number };
+export const bookItems: BookListItem[] = registry.map((r) => ({
+  key: r.id,
+  title: (r.meta as any)?.title ?? r.id,
+  cover: r.cover,
+}));

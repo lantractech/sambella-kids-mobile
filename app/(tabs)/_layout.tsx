@@ -15,14 +15,25 @@ export default function TabLayout() {
 				tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
 				headerShown: false,
 				tabBarButton: HapticTab,
+				// Compact bar height and remove visual gap between icon and label
+				tabBarStyle: { height: 48, paddingVertical: 0 },
+				tabBarItemStyle: { paddingVertical: 0 },
+				tabBarLabelStyle: { fontSize: 12, marginTop: -4 },
+				tabBarIconStyle: { marginBottom: -4 },
 			}}
 		>
+			{/* Hide Books from the tab bar; keep route available if navigated programmatically */}
+			<Tabs.Screen name='books' options={{ href: null }} />
 			<Tabs.Screen
 				name='index'
 				options={{
 					title: 'Home',
-					tabBarIcon: ({ color }) => (
-						<IconSymbol size={28} name='house.fill' color={color} />
+					tabBarIcon: ({ focused }) => (
+						<IconSymbol
+							size={22}
+							name='house.fill'
+							color={focused ? '#4ECDC4' : '#BDEDE9'}
+						/>
 					),
 				}}
 			/>
@@ -30,8 +41,12 @@ export default function TabLayout() {
 				name='explore'
 				options={{
 					title: 'Explore',
-					tabBarIcon: ({ color }) => (
-						<IconSymbol size={28} name='paperplane.fill' color={color} />
+					tabBarIcon: ({ focused }) => (
+						<IconSymbol
+							size={22}
+							name='paperplane.fill'
+							color={focused ? '#4ECDC4' : '#BDEDE9'}
+						/>
 					),
 				}}
 			/>
